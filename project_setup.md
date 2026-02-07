@@ -104,9 +104,43 @@ Open `src/pages/index.astro` and find the `<!-- Bottom-right: Social icons -->` 
 
 ## Deploying
 
-Since this is a static site (`output: "static"` by default), you can deploy the `dist/` folder to any static host:
+This project is configured for Vercel via `@astrojs/vercel` (see `astro.config.mjs`). You can deploy either by connecting the Git repo in the Vercel UI or using the CLI.
 
-- **Vercel**: `npx vercel`
-- **Netlify**: drag-and-drop `dist/` or connect the repo
-- **GitHub Pages**: push `dist/` to a `gh-pages` branch
-- **Cloudflare Pages**: connect the repo, set build command to `npm run build` and output directory to `dist`
+### Deploy on Vercel (recommended)
+
+#### Option A — Vercel Dashboard (Git integration)
+
+1. Push this repo to GitHub.
+2. In Vercel, click **Add New → Project** and import the repo.
+3. Vercel should auto-detect **Astro**.
+4. Keep defaults:
+   - **Build Command**: `npm run build`
+   - **Install Command**: `npm install`
+5. Click **Deploy**.
+
+#### Option B — Vercel CLI
+
+```bash
+npx vercel
+```
+
+Then for a production deployment:
+
+```bash
+npx vercel --prod
+```
+
+### Environment variables (only if you add APIs later)
+
+If you add server endpoints (e.g., LinkedIn/Tavily integration), set secrets in Vercel:
+
+- Vercel Dashboard: **Project → Settings → Environment Variables**
+- Or CLI:
+
+```bash
+npx vercel env add TAVILY_API_KEY
+```
+
+### Other hosts
+
+You can also deploy to Netlify / Cloudflare Pages, but Vercel is the easiest with the current server build setup.
